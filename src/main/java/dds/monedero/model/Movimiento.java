@@ -16,9 +16,10 @@ public class Movimiento {
     this.esDeposito = esDeposito;
   }
 
-  public double getMonto() {
-    return monto;
+  public double getMontoConSigno() {
+    return esDeposito.getMontoConSigno(monto);
   }
+  public double getMonto() {return monto;}
 
   public LocalDate getFecha() {
     return fecha;
@@ -44,8 +45,4 @@ public class Movimiento {
     return esDeposito.equals(TipoMovimiento.Extraccion);
   }
 
-
-  public double calcularValor(Cuenta cuenta) {
-    return cuenta.getSaldo()+esDeposito.getMontoConSigno(monto);
-  }
 }
