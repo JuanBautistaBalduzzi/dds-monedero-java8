@@ -8,9 +8,9 @@ public class Movimiento {
   // En su lugar siempre usen numeros de precision arbitraria o punto fijo, como BigDecimal en Java y similares
   // De todas formas, NO es necesario modificar ésto como parte de este ejercicio. 
   private double monto;
-  private boolean esDeposito;
+  private TipoMovimiento esDeposito;
 
-  public Movimiento(LocalDate fecha, double monto, boolean esDeposito) {
+  public Movimiento(LocalDate fecha, double monto, TipoMovimiento esDeposito) {
     this.fecha = fecha;
     this.monto = monto;
     this.esDeposito = esDeposito;
@@ -37,19 +37,15 @@ public class Movimiento {
   }
 
   public boolean isDeposito() {
-    return esDeposito;
+    return esDeposito.equals(TipoMovimiento.Deposito);
   }
 
   public boolean isExtraccion() {
-    return !esDeposito;
+    return esDeposito.equals(TipoMovimiento.Extraccion);
   }
 
 
   public double calcularValor(Cuenta cuenta) {
-    if (esDeposito) {
-      return cuenta.getSaldo() + getMonto();
-    } else {
-      return cuenta.getSaldo() - getMonto();
-    }
+    return cuenta.getSaldo()+esDeposito.getMontoConSigno(monto);
   }
 }

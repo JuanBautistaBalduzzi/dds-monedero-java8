@@ -30,7 +30,7 @@ public class Cuenta {
     validarMonto(cuanto);
     validarDepositosEnElDia();
 
-   this.agregarMovimiento(LocalDate.now(), cuanto, true);
+   this.agregarMovimiento(LocalDate.now(), cuanto, TipoMovimiento.Deposito);
   }
 
   public void validarDepositosEnElDia() {
@@ -43,7 +43,7 @@ public class Cuenta {
     validarMonto(cuanto);
     validarSaldo(cuanto);
     validarMontoExtraidoEnElDia(cuanto);
-    this.agregarMovimiento(LocalDate.now(), cuanto, false);
+    this.agregarMovimiento(LocalDate.now(), cuanto, TipoMovimiento.Extraccion);
   }
 
   public void validarMonto(double cuanto) {
@@ -66,7 +66,7 @@ public class Cuenta {
     }
   }
 
-  public void agregarMovimiento(LocalDate fecha, double cuanto, boolean esDeposito) {
+  public void agregarMovimiento(LocalDate fecha, double cuanto, TipoMovimiento esDeposito) {
     Movimiento movimiento = new Movimiento(fecha, cuanto, esDeposito);
     movimientos.add(movimiento);
   }
