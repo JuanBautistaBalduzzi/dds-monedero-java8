@@ -16,7 +16,10 @@ public class Cuenta {
   public void setMovimientos(List<Movimiento> movimientos) {
     this.movimientos = movimientos;
   }
-
+  Cuenta(){};
+  Cuenta(double montoInicial) {
+    poner(montoInicial);
+  }
   public void poner(double cuanto) {
     validarMonto(cuanto);
     validarDepositosEnElDia();
